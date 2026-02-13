@@ -1,11 +1,16 @@
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+
 
 function App() {
+
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   return (
     <div className="app">
 
       {/* Header */}
-      <header className="header">
+      <header className={`header ${isSearchOpen ? "search-open" : ""}`}>
         <div className="header-inner">
           
           {/* Left - Brand */}
@@ -20,22 +25,32 @@ function App() {
             <a href="#">Contact</a>
 
             <button className="icon account">Account</button>
-            <button className="icon search">Search</button>
+
+            <button 
+              className="icon search"
+              onClick={() => setIsSearchOpen(true)}
+            >
+              Search
+            </button>
+            
             <button className="icon cart">Cart</button>
           </nav>
 
           {/* Search Bar */}
           <div className="search-layer">
+
             <input
               type="search"
               placeholder="Search Products..."
               className="search-input"
             />
 
-            <button className="search-close">X</button>
+            <button
+              className="icon search"
+              onClick={() => setIsSearchOpen(false)}>X</button>
           </div>
         </div>
-      </header>
+      </header> 
 
       {/* Main Content */}
       <main className="main">
